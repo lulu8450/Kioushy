@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
         // Initialise le point de départ du 'currentPoint'
         currentPoint = downPoint;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void LinkActions()
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
         inputActions.PlayerInput.Grab.performed += OnGrab;
         inputActions.PlayerInput.Throw.performed += OnThrow;
+        inputActions.PlayerInput.Restart.performed += OnRestart;
     }
 
     void FixedUpdate()
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log("Move Input: " + moveInput);
+        // Debug.Log("Move Input: " + moveInput);
     }
 
     // Gère l'action de Grab/Drop
@@ -135,6 +137,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Gère l'action de Restart
+    void OnRestart(InputAction.CallbackContext context)
+    {
+        // Reload the current scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
     // Logique pour attraper un objet
     void GrabObject()
     {
@@ -154,7 +163,7 @@ public class PlayerController : MonoBehaviour
             Rigidbody2D heldRb = heldObject.GetComponent<Rigidbody2D>();
             if (heldRb != null)
             {
-                heldRb.isKinematic = true;
+                heldRb.bodyType = RigidbodyType2D.Kinematic;
                 heldRb.linearVelocity = Vector2.zero;
             }
             
@@ -181,7 +190,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D heldRb = heldObject.GetComponent<Rigidbody2D>();
         if (heldRb != null)
         {
-            heldRb.isKinematic = false;
+            heldRb.bodyType = RigidbodyType2D.Dynamic;
         }
         
         heldObject = null;
@@ -203,7 +212,7 @@ public class PlayerController : MonoBehaviour
         
         if (heldRb != null)
         {
-            heldRb.isKinematic = false;
+            heldRb.bodyType = RigidbodyType2D.Dynamic;
             heldRb.linearVelocity = Vector2.zero;
             heldRb.AddForce(lastMoveDirection * throwForce, ForceMode2D.Impulse);
         }

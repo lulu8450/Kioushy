@@ -45,7 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b2564e31242bfd458a921dd371e2baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefab: {fileID: 0}
+  PlasticPrefabs:
+  - {fileID: 9089377297701887106, guid: b311d902c3a36a94cbae4c446243f8bd, type: 3}
+  - {fileID: 683919962730287093, guid: 31a6770ebed057d4cb5fb71b27c5b94b, type: 3}
+  PaperPrefabs:
+  - {fileID: 1142403522466767796, guid: 26b93813e1267d64494f0fe1a5f4ff2e, type: 3}
+  - {fileID: 7258575498096155859, guid: 11de185226f469c4f86c7af5956df783, type: 3}
+  GlassPrefabs:
+  - {fileID: 101832839211983246, guid: 7130d62c21324ee4fabac47cd39eaa21, type: 3}
+  - {fileID: 7922853372695778612, guid: 111e52d523599d040bde09bc7d57d76d, type: 3}
+  MetalPrefabs:
+  - {fileID: 1603273701369727739, guid: 4061a4ad997fce74eb49c7022988bd1c, type: 3}
+  - {fileID: 7922853372695778612, guid: b33baff01171b08408c113985ed59e93, type: 3}
 --- !u!1 &6580938903028139514
 GameObject:
   m_ObjectHideFlags: 0

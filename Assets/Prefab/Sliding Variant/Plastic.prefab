@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &174195207433849306
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 673336716778921590, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 673336716778921590, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 799133896116389423, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_Name
+      value: Plastic
+      objectReference: {fileID: 0}
+    - target: {fileID: 799133896116389423, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 799133896116389423, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_TagString
+      value: Recyclable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410987479724225449, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 799133896116389423, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2252541753203848070}
+  m_SourcePrefab: {fileID: 100100000, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+--- !u!1 &683919962730287093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 799133896116389423, guid: 0657a7906425f8842a64788a0155900b, type: 3}
+  m_PrefabInstance: {fileID: 174195207433849306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2252541753203848070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683919962730287093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da16ca6ca93bc84f8c71b5c994e11bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteList:
+  - {fileID: -806415066056697924, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
+  - {fileID: 1043442747385290943, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
+  - {fileID: -8075080999890912046, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
+  - {fileID: 1565831748363409520, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}

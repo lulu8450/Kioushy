@@ -191,6 +191,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9c84df24-cda8-4bb3-b819-9aee27999145
     m_ActionName: 'PlayerInput/Throw[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0d8b159d-5e40-435b-be36-3c25002fe03c
+    m_ActionName: 'PlayerInput/Restart[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerInput
@@ -221,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 4055302392115186441}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0608, y: 0.0298, z: 0}
+  m_LocalPosition: {x: -0.0608, y: 0.05, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -252,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 6171952728633343158}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0049, y: 0.1, z: 0}
+  m_LocalPosition: {x: -0.0049, y: 0.1247, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -397,7 +401,7 @@ Transform:
   m_GameObject: {fileID: 6566924042813086526}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 0, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0.05, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,13 +1,9 @@
-using UnityEngine;
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerObject : MonoBehaviour
 {
-    public enum ObjectType { Plastic, Paper, Glass, Metal }
-
     [Header("Plastic Prefabs")]
     public List<GameObject> PlasticPrefabs = new List<GameObject>();
     [Header("Paper Prefabs")]
@@ -17,7 +13,8 @@ public class SpawnerObject : MonoBehaviour
     [Header("Metal Prefabs")]
     public List<GameObject> MetalPrefabs = new List<GameObject>();
 
-    public void SpawnObject(string type, int index)
+    // Instantiates and returns the spawned GameObject for the given type and index
+    public GameObject SpawnObjectAndReturn(string type, int index)
     {
         List<GameObject> selectedList = null;
         switch (type.ToLower())
@@ -36,18 +33,18 @@ public class SpawnerObject : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning($"Unknown type: {type}");
-                return;
+                return null;
         }
 
         if (selectedList == null || index < 0 || index >= selectedList.Count)
         {
             Debug.LogWarning($"Invalid index {index} for type {type}");
-            return;
+            return null;
         }
 
         GameObject spawnPrefab = selectedList[index];
-        if (spawnPrefab == null) return;
+        if (spawnPrefab == null) return null;
 
-        Instantiate(spawnPrefab, transform.position, transform.rotation);
+        return Instantiate(spawnPrefab, transform.position, transform.rotation);
     }
 }
