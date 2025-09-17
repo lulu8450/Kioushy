@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public event System.Action OnRestarted;
+
     [Header("Mouvement")]
     private Rigidbody2D rb;
     private PlayerActions inputActions;
@@ -29,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMoveDirection = Vector2.right;
     private GameObject heldObject = null;
 
+    public InterfaceController interfaceController;
+
     // Appelé en premier avant Start()
     void Awake()
     {
@@ -43,7 +47,11 @@ public class PlayerController : MonoBehaviour
 
         // Initialise le point de départ du 'currentPoint'
         currentPoint = downPoint;
-        DontDestroyOnLoad(this.gameObject);
+        // Removed DontDestroyOnLoad to allow player to be destroyed and respawned
+
+        // Assign interfaceController automatically if not set
+        if (interfaceController == null)
+            interfaceController = FindFirstObjectByType<InterfaceController>();
     }
 
     void LinkActions()
@@ -141,7 +149,12 @@ public class PlayerController : MonoBehaviour
     void OnRestart(InputAction.CallbackContext context)
     {
         // Reload the current scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        interfaceController.ResetGame();
+        if (OnRestarted != null) OnRestarted();
+        // Respawn player and reset position
+        transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
+        gameObject.SetActive(true);
+        FindObjectOfType<RecyclableSpawnerManager>()?.SpawnNextRecyclable();
     }
 
     // Logique pour attraper un objet
