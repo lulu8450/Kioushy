@@ -7,6 +7,8 @@ public class ObjectDestroyer : MonoBehaviour
     public GameObject stretchingObject;
     public GameObject playerObject;
     public Transform playerSpawnPoint;
+    public string CurrentObjectName;
+    public string CurrentObjectTag;
 
 
     private void Start()
@@ -29,13 +31,14 @@ public class ObjectDestroyer : MonoBehaviour
         }
         if (playerSpawnPoint == null)
         {
-            GameObject spawnObj = GameObject.Find("PlayerSpawnPoint");
-            if (spawnObj != null)
-                playerSpawnPoint = spawnObj.transform;
+            playerSpawnPoint = GameObject.FindGameObjectWithTag("PlayerSpawnPoint")?.transform;
+            // GameObject spawnObj = GameObject.Find("PlayerSpawnPoint");
+            // if (spawnObj != null)
+            //     playerSpawnPoint = spawnObj.transform;
         }
         // Subscribe to restart event (assuming InterfaceController or PlayerController exposes one)
         if (interfaceController != null)
-        {   
+        {
             PlayerController pc = playerObject?.GetComponent<PlayerController>();
             if (pc != null)
             {
@@ -46,7 +49,9 @@ public class ObjectDestroyer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Recyclable"))
+        CurrentObjectName = collision.gameObject.name;
+        CurrentObjectTag = GameObject.tag;
+        if (collision.CompareTag("Recyclable") )
         {
             Debug.Log("Recyclable object destroyed");
             interfaceController.score += 1;
@@ -62,6 +67,7 @@ public class ObjectDestroyer : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             interfaceController.SetGameOver();
+            interfaceController.ResetGame();
             // collision.gameObject.SetActive(false);
             // GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
             if (playerObject != null)

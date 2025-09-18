@@ -7,6 +7,7 @@ public class InterfaceController : MonoBehaviour
 
     public static InterfaceController instance;
     public TextMeshProUGUI gameStateText;
+    // public TextMeshProUGUI 
     public TextMeshProUGUI scoreText;
     public int score = 0;
     public int targetScore = 10;

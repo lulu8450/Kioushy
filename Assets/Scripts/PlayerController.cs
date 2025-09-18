@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
     void OnRestart(InputAction.CallbackContext context)
     {
         // Reload the current scene
-        interfaceController.ResetGame();
+        // interfaceController.ResetGame();
         if (OnRestarted != null) OnRestarted();
         // Respawn player and reset position
         transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;

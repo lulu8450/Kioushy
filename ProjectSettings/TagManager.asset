@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Recyclable
+  - PlayerSpawnPoint
+  - Glass
+  - Metal
+  - Paper
+  - Plastic
   layers:
   - Default
   - TransparentFX
