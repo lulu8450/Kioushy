@@ -47,5 +47,27 @@ public class SpawnerObject : MonoBehaviour
 
         return Instantiate(spawnPrefab, transform.position, transform.rotation);
     }
-
+    public GameObject SpawnObject() // choose randomly 1 type  to spawn 1 object
+    {
+        string[] types = new string[] { "plastic", "paper", "glass", "metal" };
+        string chosenType = types[UnityEngine.Random.Range(0, types.Length)];
+        int index = 0;
+        switch (chosenType)
+        {
+            case "plastic":
+                index = UnityEngine.Random.Range(0, PlasticPrefabs.Count);
+                break;
+            case "paper":
+                index = UnityEngine.Random.Range(0, PaperPrefabs.Count);
+                break;
+            case "glass":
+                index = UnityEngine.Random.Range(0, GlassPrefabs.Count);
+                break;
+            case "metal":
+                index = UnityEngine.Random.Range(0, MetalPrefabs.Count);
+                break;
+        }
+        return SpawnObjectAndReturn(chosenType, index);
+    }
+ 
 }
