@@ -9,6 +9,8 @@ public class RecyclableSpawnerManager : MonoBehaviour
     private int lastBinSpawnerIndex = -1;
     public GameObject currentRecyclableObject;
     public GameObject currentBinObject;
+    public GameObject firstBinObject;
+    public GameObject secondBinObject;
 
     void Start()
     {
@@ -28,67 +30,70 @@ public class RecyclableSpawnerManager : MonoBehaviour
             Destroy(currentRecyclableObject);
             currentRecyclableObject = null;
         }
-        if (currentBinObject != null)
-        {
-            Destroy(currentBinObject);
-            currentBinObject = null;
-        }
+        Destroy(firstBinObject);
+        firstBinObject = null;
+        Destroy(secondBinObject);
+        secondBinObject = null;
 
-        // Randomly select recyclable type
+        // Randomly select two different bin types
         string[] types = { "Plastic", "Paper", "Glass", "Metal" };
-        int typeIndex = Random.Range(0, types.Length);
-        string selectedType = types[typeIndex];
+        List<string> availableTypes = new List<string>(types);
+        int firstTypeIndex = Random.Range(0, availableTypes.Count);
+        string firstBinType = availableTypes[firstTypeIndex];
+        availableTypes.RemoveAt(firstTypeIndex);
+        int secondTypeIndex = Random.Range(0, availableTypes.Count);
+        string secondBinType = availableTypes[secondTypeIndex];
 
-        // Select two different spawners
-        int objectSpawnerIndex, binSpawnerIndex;
+        // Select three different spawners
+        int firstBinSpawnerIndex, secondBinSpawnerIndex, objectSpawnerIndex;
+        do
+        {
+            firstBinSpawnerIndex = Random.Range(0, spawnersList.Count);
+        } while (spawnersList.Count > 1 && firstBinSpawnerIndex == lastBinSpawnerIndex);
+        lastBinSpawnerIndex = firstBinSpawnerIndex;
+
+        do
+        {
+            secondBinSpawnerIndex = Random.Range(0, spawnersList.Count);
+        } while (secondBinSpawnerIndex == firstBinSpawnerIndex && spawnersList.Count > 1);
+
         do
         {
             objectSpawnerIndex = Random.Range(0, spawnersList.Count);
-        } while (objectSpawnerIndex == lastObjectSpawnerIndex && spawnersList.Count > 1);
-        lastObjectSpawnerIndex = objectSpawnerIndex;
+        } while ((objectSpawnerIndex == firstBinSpawnerIndex || objectSpawnerIndex == secondBinSpawnerIndex) && spawnersList.Count > 2);
 
-        do
-        {
-            binSpawnerIndex = Random.Range(0, spawnersList.Count);
-        } while ((binSpawnerIndex == objectSpawnerIndex || binSpawnerIndex == lastBinSpawnerIndex) && spawnersList.Count > 2);
-        lastBinSpawnerIndex = binSpawnerIndex;
-
+        SpawnerObject firstBinSpawner = spawnersList[firstBinSpawnerIndex];
+        SpawnerObject secondBinSpawner = spawnersList[secondBinSpawnerIndex];
         SpawnerObject objectSpawner = spawnersList[objectSpawnerIndex];
-        SpawnerObject binSpawner = spawnersList[binSpawnerIndex];
 
-        // Get prefab list for selected type
-        List<GameObject> objectList = GetPrefabList(objectSpawner, selectedType);
-        List<GameObject> binList = GetPrefabList(binSpawner, selectedType);
+        // Get prefab lists for each bin type
+        List<GameObject> firstBinList = GetPrefabList(firstBinSpawner, firstBinType);
+        List<GameObject> secondBinList = GetPrefabList(secondBinSpawner, secondBinType);
 
-        if (objectList == null || objectList.Count == 0)
+        if (firstBinList == null || firstBinList.Count == 0)
         {
-            Debug.LogWarning($"No recyclable objects for type {selectedType} in spawner {objectSpawnerIndex}");
+            Debug.LogWarning($"No bins for type {firstBinType} in spawner {firstBinSpawnerIndex}");
             return;
         }
-        if (binList == null || binList.Count == 0)
+        if (secondBinList == null || secondBinList.Count == 0)
         {
-            Debug.LogWarning($"No bins for type {selectedType} in spawner {binSpawnerIndex}");
-            return;
-        }
-
-        // Always use index 1 for object, index 0 for bin
-        int objectIndex = 1;
-        int binIndex = 0;
-        if (objectList.Count <= objectIndex)
-        {
-            Debug.LogWarning($"No recyclable object at index 1 for type {selectedType} in spawner {objectSpawnerIndex}");
-            return;
-        }
-        if (binList.Count <= binIndex)
-        {
-            Debug.LogWarning($"No bin at index 0 for type {selectedType} in spawner {binSpawnerIndex}");
+            Debug.LogWarning($"No bins for type {secondBinType} in spawner {secondBinSpawnerIndex}");
             return;
         }
 
-        // Spawn recyclable object
-        currentRecyclableObject = objectSpawner.SpawnObjectAndReturn(selectedType, objectIndex);
-        // Spawn bin
-        currentBinObject = binSpawner.SpawnObjectAndReturn(selectedType, binIndex);
+        // Always use index 0 for bin
+        firstBinObject = firstBinSpawner.SpawnObjectAndReturn(firstBinType, 0);
+        secondBinObject = secondBinSpawner.SpawnObjectAndReturn(secondBinType, 0);
+
+        // Randomly choose one of the bin types for the recyclable object
+        string objectType = (Random.value < 0.5f) ? firstBinType : secondBinType;
+        List<GameObject> objectList = GetPrefabList(objectSpawner, objectType);
+        if (objectList == null || objectList.Count <= 1)
+        {
+            Debug.LogWarning($"No recyclable object for type {objectType} in spawner {objectSpawnerIndex}");
+            return;
+        }
+        currentRecyclableObject = objectSpawner.SpawnObjectAndReturn(objectType, 1);
     }
 
     // Helper to get prefab list by type name

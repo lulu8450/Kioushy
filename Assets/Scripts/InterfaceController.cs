@@ -1,4 +1,5 @@
 using UnityEngine.SceneManagement;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
@@ -16,10 +17,20 @@ public class InterfaceController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // gameStateText.text = "";
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
         AssignUIReferences();
     }
+
+    // void Update()
+    // {
+    //     if (score == targetScore)
+    //     {
+    //         // Show win text for 3 seconds
+    //         StartCoroutine(ShowWinText());
+    //     } 
+    // }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -31,15 +42,15 @@ public class InterfaceController : MonoBehaviour
         scoreText = GameObject.Find("ScoreText")?.GetComponent<TextMeshProUGUI>();
         // gameStateText = GameObject.Find("Win/LoseText")?.GetComponent<TextMeshProUGUI>();
         // Find Win/LoseText by searching all TextMeshProUGUI components
-        gameStateText = null;
-        foreach (var tmp in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
-        {
-            if (tmp.gameObject.name == "Win/LoseText")
-            {
-                gameStateText = tmp;
-                break;
-            }
-        }
+        // gameStateText = null;
+        // foreach (var tmp in Resources.FindObjectsOfTypeAll<TextMeshProUGUI>())
+        // {
+        //     if (tmp.gameObject.name == "Win/LoseText")
+        //     {
+        //         gameStateText = tmp;
+        //         break;
+        //     }
+        // }
 
         if (scoreText == null)
         {
@@ -67,14 +78,46 @@ public class InterfaceController : MonoBehaviour
 
     public void ResetGame()
     {
-        gameStateText.gameObject.SetActive(false);
+        if (gameStateText != null)
+            gameStateText.gameObject.SetActive(false);
         score = 0;
         UpdateScoreText();
-        gameStateText.text = "";
+        if (gameStateText != null)
+            gameStateText.text = "";
     }
     public void SetGameOver()
     {
+        Debug.Log("Game Over set in InterfaceController");
         gameStateText.gameObject.SetActive(true);
         gameStateText.text = "Game Over! \n You can't Recycle yourself! \n Press R to Restart";
     }
+
+    public void ShowText()
+    {
+        Debug.Log("ShowText called");
+        StartCoroutine(ShowTextCoroutine());
+    }
+
+    // coroutine to show win text for 3 seconds
+    public IEnumerator ShowTextCoroutine()
+    {
+        Debug.Log("Coroutine started");
+        //augment the size of the text gameObject
+        if (gameStateText == null)
+        {
+            Debug.LogWarning("gameStateText is not assigned in InterfaceController!");
+            yield break;
+        }
+        // gameStateText.gameObject.scale = Vector3.one * 1.5f;
+        gameStateText.gameObject.SetActive(true);
+        // gameStateText.text = "You finished! \n Go to the exit!";
+        yield return new WaitForSeconds(2f);
+
+        // gameStateText.gameObject.scale = Vector3.one;
+        gameStateText.gameObject.SetActive(false);
+        gameStateText.text = "";
+        Debug.Log("Coroutine ended");
+    }
+
+
 }

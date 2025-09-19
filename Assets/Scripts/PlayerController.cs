@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         inputActions.PlayerInput.Grab.performed += OnGrab;
         inputActions.PlayerInput.Throw.performed += OnThrow;
         inputActions.PlayerInput.Restart.performed += OnRestart;
+        // inputActions.PlayerInput.Attack.performed += OnAttatck;
     }
 
     void FixedUpdate()
@@ -149,23 +150,31 @@ public class PlayerController : MonoBehaviour
     void OnRestart(InputAction.CallbackContext context)
     {
         // Reload the current scene
-        // interfaceController.ResetGame();
+        interfaceController.ResetGame();
         if (OnRestarted != null) OnRestarted();
         // Respawn player and reset position
         transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
         gameObject.SetActive(true);
-        FindObjectOfType<RecyclableSpawnerManager>()?.SpawnNextRecyclable();
+        FindFirstObjectByType<RecyclableSpawnerManager>()?.SpawnNextRecyclable();
     }
 
+    // void OnAttatck(InputAction.CallbackContext context)
+    // {
+    //     // Attack logic here
+    //     Debug.Log("Attack!");
+    //     //Damage monster
+    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMoveDirection, attackRange, monsterLayer);
+    // }
+    
     // Logique pour attraper un objet
     void GrabObject()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, grabRadius, grabbableLayer);
-        
+
         if (hitColliders.Length > 0)
         {
             heldObject = hitColliders[0].gameObject;
-            
+
             // Désactive les colliders de l'objet pour éviter les collisions
             foreach (Collider2D col in heldObject.GetComponents<Collider2D>())
             {
@@ -179,7 +188,7 @@ public class PlayerController : MonoBehaviour
                 heldRb.bodyType = RigidbodyType2D.Kinematic;
                 heldRb.linearVelocity = Vector2.zero;
             }
-            
+
             // On attache l'objet au point actuel
             heldObject.transform.SetParent(currentPoint);
             heldObject.transform.localPosition = Vector3.zero;
@@ -190,22 +199,22 @@ public class PlayerController : MonoBehaviour
     void DropObject()
     {
         if (heldObject == null) return;
-        
+
         // Détache l'objet du point d'attache
         heldObject.transform.SetParent(null);
-        
+
         // Réactive ses colliders et sa physique
         foreach (Collider2D col in heldObject.GetComponents<Collider2D>())
         {
             col.enabled = true;
         }
-        
+
         Rigidbody2D heldRb = heldObject.GetComponent<Rigidbody2D>();
         if (heldRb != null)
         {
             heldRb.bodyType = RigidbodyType2D.Dynamic;
         }
-        
+
         heldObject = null;
     }
 
@@ -213,23 +222,24 @@ public class PlayerController : MonoBehaviour
     void ThrowObject()
     {
         if (heldObject == null) return;
-        
+
         Rigidbody2D heldRb = heldObject.GetComponent<Rigidbody2D>();
-        
+
         // Détache l'objet avant de réactiver la physique
         heldObject.transform.SetParent(null);
         foreach (Collider2D col in heldObject.GetComponents<Collider2D>())
         {
             col.enabled = true;
         }
-        
+
         if (heldRb != null)
         {
             heldRb.bodyType = RigidbodyType2D.Dynamic;
             heldRb.linearVelocity = Vector2.zero;
             heldRb.AddForce(lastMoveDirection * throwForce, ForceMode2D.Impulse);
         }
-        
+
         heldObject = null;
     }
+
 }

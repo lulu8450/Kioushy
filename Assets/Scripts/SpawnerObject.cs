@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SpawnerObject : MonoBehaviour
 {
@@ -47,4 +47,5 @@ public class SpawnerObject : MonoBehaviour
 
         return Instantiate(spawnPrefab, transform.position, transform.rotation);
     }
+
 }

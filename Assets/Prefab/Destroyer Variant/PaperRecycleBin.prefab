@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaperRecycleBin
       objectReference: {fileID: 0}
+    - target: {fileID: 692049352746660521, guid: 52814880f57e74e44973c6612139ce87, type: 3}
+      propertyPath: m_TagString
+      value: Paper
+      objectReference: {fileID: 0}
     - target: {fileID: 4751752441695713926, guid: 52814880f57e74e44973c6612139ce87, type: 3}
       propertyPath: m_Size.x
       value: 1.3

@@ -7,12 +7,12 @@ public class StrechingObject : MonoBehaviour
     public Vector3 nextScale = Vector3.one;
     public float speed = 2;
 
-    private Vector3 targetScale = Vector3.one;
+    private Vector3 targetScale;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-
+        targetScale = transform.localScale;
     }
 
     // Update is called once per frame

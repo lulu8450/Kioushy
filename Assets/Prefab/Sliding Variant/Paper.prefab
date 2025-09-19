@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteList:
-  - {fileID: -2476258253311705711, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
-  - {fileID: 5740961901574564063, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
-  - {fileID: 5435821699272093448, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
-  - {fileID: -7593663360690973604, guid: 9ce7742c564497f48904e67dbe4ced70, type: 3}
+  - {fileID: 735196546323505269, guid: c8a97eb8650ae2b429e7775f5a945135, type: 3}
+  - {fileID: 4275756310184607831, guid: c8a97eb8650ae2b429e7775f5a945135, type: 3}
+  - {fileID: 4279261712979794480, guid: c8a97eb8650ae2b429e7775f5a945135, type: 3}
+  - {fileID: -8566945862274405654, guid: c8a97eb8650ae2b429e7775f5a945135, type: 3}

@@ -941,6 +941,8 @@ MonoBehaviour:
   - {fileID: 1856992481}
   currentRecyclableObject: {fileID: 0}
   currentBinObject: {fileID: 0}
+  firstBinObject: {fileID: 0}
+  secondBinObject: {fileID: 0}
 --- !u!1001 &1168569159
 PrefabInstance:
   m_ObjectHideFlags: 0
