@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2426799554469752696}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3563099192738451047}
   - component: {fileID: 6006665254804817801}
   - component: {fileID: 6474698447167637892}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1415364010963831346}
   - component: {fileID: 3422791583732722431}
   - component: {fileID: 4040191858616968892}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215001471315726336}
   - component: {fileID: 4065681957924367890}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 8576582744971018995}
   - component: {fileID: 4136674426117186226}
   - component: {fileID: 2646877253124884432}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,8 +357,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.07
+  m_Height: 0.2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8576582744971018995
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 9179793945883240309}
   - component: {fileID: 3736638057907191459}
   - component: {fileID: 5305225154596579618}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

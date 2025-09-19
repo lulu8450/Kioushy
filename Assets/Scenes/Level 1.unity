@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerController
       objectReference: {fileID: 0}
+    - target: {fileID: 2224532125460098029, guid: b50602a9ecd139741ab864127d04a355, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7270948255281824163, guid: b50602a9ecd139741ab864127d04a355, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9
@@ -667,6 +671,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrechingObject
       objectReference: {fileID: 0}
+    - target: {fileID: 4556031187479563093, guid: fffa5160696c95646a58506b05bf2202, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -760,6 +768,10 @@ PrefabInstance:
     - target: {fileID: 4215829036764124338, guid: 3d393a0c2eb7cae41975dc3d14497cb7, type: 3}
       propertyPath: m_Name
       value: ObjectTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4215829036764124338, guid: 3d393a0c2eb7cae41975dc3d14497cb7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6932746495729675366, guid: 3d393a0c2eb7cae41975dc3d14497cb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -962,6 +974,10 @@ PrefabInstance:
     - target: {fileID: 4427819105072290895, guid: 717e2cbb2f75ffa47bddee47b4583819, type: 3}
       propertyPath: m_Name
       value: InterfaceController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427819105072290895, guid: 717e2cbb2f75ffa47bddee47b4583819, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8185585095959405866, guid: 717e2cbb2f75ffa47bddee47b4583819, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,6 +1628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maze
       objectReference: {fileID: 0}
+    - target: {fileID: 7064737729529420135, guid: 627e44fd2a73d8f4aafd03fb37d00ed7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1708,6 +1728,10 @@ PrefabInstance:
     - target: {fileID: 8987125794515508965, guid: 98bf5018d598e6b498e3a795db72acd5, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987125794515508965, guid: 98bf5018d598e6b498e3a795db72acd5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Transform currentPoint; // Le point d'attache actuel
     public float grabRadius = 1f;
     public LayerMask grabbableLayer;
+    public bool attacking = false;
+
 
     [Header("Lancer")]
     public float throwForce = 10f;
@@ -63,7 +65,8 @@ public class PlayerController : MonoBehaviour
         inputActions.PlayerInput.Grab.performed += OnGrab;
         inputActions.PlayerInput.Throw.performed += OnThrow;
         inputActions.PlayerInput.Restart.performed += OnRestart;
-        // inputActions.PlayerInput.Attack.performed += OnAttatck;
+        inputActions.PlayerInput.Attack.performed += OnAttackPerformed;
+        inputActions.PlayerInput.Attack.canceled += OnAttackCanceled;
     }
 
     void FixedUpdate()
@@ -86,7 +89,14 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("IsMoving", moveInput.magnitude > 0.1f);
             playerAnimator.SetFloat("MoveX", moveInput.x);
             playerAnimator.SetFloat("MoveY", moveInput.y);
+            // playerAnimator.SetBool("IsAttacking", attacking);
         }
+    }
+
+    // Update attacking state at the end of frame
+    void LateUpdate()
+    {
+        attacking = false;
     }
 
     void UpdateCurrentPoint()
@@ -158,13 +168,51 @@ public class PlayerController : MonoBehaviour
         FindFirstObjectByType<RecyclableSpawnerManager>()?.SpawnNextRecyclable();
     }
 
-    // void OnAttatck(InputAction.CallbackContext context)
-    // {
-    //     // Attack logic here
-    //     Debug.Log("Attack!");
-    //     //Damage monster
-    //     RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMoveDirection, attackRange, monsterLayer);
-    // }
+    void OnAttackPerformed(InputAction.CallbackContext context)
+    {
+        // Attack logic here
+        Debug.Log("Attack!");
+        float attackRange = 4.0f; // Range of the attack
+        int attackDamage = 5; // Damage dealt by the attack
+        LayerMask monsterLayer = LayerMask.GetMask("Monster"); // Layer of the monsters
+        attacking = true;
+        playerAnimator.SetBool("IsAttacking", attacking);
+
+        //Damage monster
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, lastMoveDirection, attackRange, monsterLayer);
+        if (hit.collider != null)
+        {
+            MonsterController monster = hit.collider.GetComponent<MonsterController>();
+            if (monster != null)
+            {
+                monster.TakeDamage(attackDamage);
+            }
+        }
+
+        // // Make monster take damage only if is in range, in front or behind the player where he is looking at and in a cone of 90 degrees and only when the animation finishes
+        // Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, attackRange, monsterLayer);
+        // foreach (Collider2D collider in hitColliders)
+        // {
+        //     Vector2 directionToMonster = (collider.transform.position - transform.position).normalized;
+        //     float angle = Vector2.Angle(lastMoveDirection, directionToMonster);
+        //     if (angle < 45 || angle > 135) // In front or behind the player
+        //     {
+        //         MonsterController monster = collider.GetComponent<MonsterController>();
+        //         if (monster != null)
+        //         {
+        //             monster.TakeDamage(attackDamage);
+        //         }
+        //     }
+        // }
+
+    }
+    void OnAttackCanceled(InputAction.CallbackContext context)
+    {
+        // Stop attack logic here
+        Debug.Log("Stop Attack!");
+        attacking = false;
+        playerAnimator.SetBool("IsAttacking", attacking);
+    }
     
     // Logique pour attraper un objet
     void GrabObject()
