@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public Transform downPoint; // Le point d'attache "down"
     public Transform rightPoint; // Le point d'attache "right"
     private Transform currentPoint; // Le point d'attache actuel
+    public GameObject cam;
+    // public Transform player = this.transform;
     public float grabRadius = 1f;
     public LayerMask grabbableLayer;
     public bool attacking = false;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private GameObject heldObject = null;
 
     public InterfaceController interfaceController;
+
 
     // Appelé en premier avant Start()
     void Awake()
@@ -213,7 +216,7 @@ public class PlayerController : MonoBehaviour
         attacking = false;
         playerAnimator.SetBool("IsAttacking", attacking);
     }
-    
+
     // Logique pour attraper un objet
     void GrabObject()
     {
@@ -290,4 +293,41 @@ public class PlayerController : MonoBehaviour
         heldObject = null;
     }
 
+    // Logique pour teleporter le joueur et la camera à un point spécifique
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "UpCollider":
+                transform.position = new Vector2(transform.position.x, transform.position.y + 4);
+                if (cam != null)
+                {
+                    cam.transform.position = new Vector2(cam.transform.position.x, cam.transform.position.y + 10);
+                }
+                break;
+            case "LeftCollider":
+                transform.position = new Vector2(transform.position.x - 4, transform.position.y);
+                if (cam != null)
+                {
+                    cam.transform.position = new Vector2(cam.transform.position.x - 18, cam.transform.position.y);
+                }
+                break;
+            case "DownCollider":
+                transform.position = new Vector2(transform.position.x, transform.position.y - 4);
+                if (cam != null)
+                {
+                    cam.transform.position = new Vector2(cam.transform.position.x, cam.transform.position.y - 10);
+                }
+                break;
+            case "RightCollider":
+                transform.position = new Vector2(transform.position.x + 4, transform.position.y);
+                if (cam != null)
+                {
+                    cam.transform.position = new Vector2(cam.transform.position.x + 18, cam.transform.position.y);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

@@ -10,6 +10,10 @@ TagManager:
   - Metal
   - Paper
   - Plastic
+  - UpCollider
+  - LeftCollider
+  - DownCollider
+  - RightCollider
   layers:
   - Default
   - TransparentFX

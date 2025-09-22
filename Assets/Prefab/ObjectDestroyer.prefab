@@ -92,6 +92,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41a8cd96d1a4c44f85d50d9fc7c821b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interfaceController: {fileID: 0}
+  recyclableSpawnerManager: {fileID: 0}
+  stretchingObject: {fileID: 0}
+  playerObject: {fileID: 0}
+  playerSpawnPoint: {fileID: 0}
+  CurrentObjectName: 'AZERTY Modif sur la prefab '
+  CurrentObjectTag: 'Modif sur la prefab '
 --- !u!1 &4136215001984065025
 GameObject:
   m_ObjectHideFlags: 0
